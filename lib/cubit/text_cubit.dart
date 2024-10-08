@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'text_state.dart';
 
 class TextCubit extends Cubit<TextState> {
-  late String text;
   TextCubit() : super(TextInitial());
 
   var controllerText = TextEditingController();
