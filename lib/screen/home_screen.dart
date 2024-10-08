@@ -36,7 +36,11 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     const Text('Cubit Screen'),
                     const SizedBox(height: 20),
-                    const Text(''),
+                    BlocBuilder<TextCubit, TextState>(
+                      builder: (context, state) {
+                        return Text(cubit.controllerText.text);
+                      },
+                    ),
                     const SizedBox(height: 250),
                     TextField(
                       controller: cubit.controllerText,
