@@ -14,7 +14,7 @@ Future<void> main() async {
     EasyLocalization(
         supportedLocales: [Locale('en'), Locale('ar')],
         path:
-            'assets/translations', // <-- change the path of the translation files
+            'assets/locales', 
         fallbackLocale: Locale('en', 'US'),
         child: MainApp()),
   );

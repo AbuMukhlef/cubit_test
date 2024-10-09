@@ -2,7 +2,6 @@ import 'package:cubit_test/cubit/text_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'page_1.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -42,14 +41,16 @@ class HomeScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        const Text('cubit'),
+                        const Text('cubit').tr(),
                         IconButton(
                           icon: light,
                           onPressed: cubit.fetchData,
                         ),
                         IconButton(
                           icon: arL,
-                          onPressed: cubit.changeLanguage(),
+                          onPressed: () {
+                            cubit.changeLanguage(context: context);
+                          },
                         )
                       ],
                     ),
@@ -66,13 +67,13 @@ class HomeScreen extends StatelessWidget {
                             return const Page1();
                           }));
                         },
-                        child: const Text('next_pag.tr()e')),
+                        child: const Text('next_page').tr()),
                     const SizedBox(height: 250),
                     TextField(
                       controller: cubit.controllerText,
-                      decoration:  InputDecoration(
+                      decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText:  'enter_your_name'.tr(),
+                        labelText: 'enter_your_name'.tr(),
                       ),
                     ),
                     const SizedBox(height: 20),

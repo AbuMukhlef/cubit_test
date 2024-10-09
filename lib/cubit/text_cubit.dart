@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,9 +19,13 @@ class TextCubit extends Cubit<TextState> {
     emitUpdate();
   }
 
-  changeLanguage() {
+  void changeLanguage({required BuildContext context}) async {
     emitLoading();
-
+    if (context.locale == Locale('ar')) {
+      await context.setLocale(Locale('en'));
+    } else if (context.locale == Locale('en')) {
+      await context.setLocale(Locale('ar'));
+    }
     emitUpdate();
   }
 
