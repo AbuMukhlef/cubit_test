@@ -7,7 +7,6 @@ class SupabaseInitialize {
       url: dotenv.env['SUPABASE_URL']!,
       anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
     );
-
-    final supabase = Supabase.instance.client;
   }
+   static final supabase = Supabase.instance.client;
 }

@@ -23,8 +23,7 @@ class HomeScreen extends StatelessWidget {
             if (state is UpdateUIState) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content:
-                      Text('Update Completed... ${cubit.controllerText.text}'),
+                  content: Text('Update Completed... '),
                 ),
               );
             }
@@ -51,8 +50,18 @@ class HomeScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
                     ElevatedButton(
-                        onPressed: cubit.doSomething,
-                        child: const Text('Search')),
+                        onPressed: cubit.fetchData,
+                        child: const Text('Start Fetching Data')),
+                    const SizedBox(height: 20),
+                    BlocBuilder<TextCubit, TextState>(
+                      builder: (context, state) {
+                        return ListView(
+                          shrinkWrap: true,
+                          children: List.generate(cubit.tableMap.length,
+                              (index) => Text('Subabase: ${cubit.tableMap[index]}')),
+                        );
+                      },
+                    ),
                   ],
                 ),
               ),
