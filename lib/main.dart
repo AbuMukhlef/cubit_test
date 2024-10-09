@@ -1,14 +1,23 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:cubit_test/screen/home_screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'supabase/set_initialize.dart';
 
-Future<void> main() async{
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   await dotenv.load(fileName: ".env");
   await SupabaseInitialize.initialize();
-  runApp(const MainApp());
+  runApp(
+    EasyLocalization(
+        supportedLocales: [Locale('en'), Locale('ar')],
+        path:
+            'assets/translations', // <-- change the path of the translation files
+        fallbackLocale: Locale('en', 'US'),
+        child: MainApp()),
+  );
 }
 
 class MainApp extends StatelessWidget {
@@ -17,6 +26,10 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       home: HomeScreen(),
     );
   }

@@ -9,7 +9,8 @@ class TextCubit extends Cubit<TextState> {
   TextCubit() : super(TextInitial());
 
   TextEditingController controllerText = TextEditingController();
-  List<Map<String, dynamic>> tableMap = List<Map<String, dynamic>>.empty(growable: true);
+  List<Map<String, dynamic>> tableMap =
+      List<Map<String, dynamic>>.empty(growable: true);
 
   void doSomething() async {
     emitLoading();
@@ -17,10 +18,23 @@ class TextCubit extends Cubit<TextState> {
     emitUpdate();
   }
 
+  changeLanguage() {
+    emitLoading();
+
+    emitUpdate();
+  }
+
   Future<void> fetchData() async {
     emitLoading();
-    var res = await SupabaseInitialize.supabase.from('messages').select().limit(2);
-    res.forEach((e) => tableMap.add(e));
+    if (tableMap.isNotEmpty) {
+      print('fghjkl');
+    } else {
+      var res =
+          await SupabaseInitialize.supabase.from('messages').select().limit(2);
+      for (var e in res) {
+        tableMap.add(e);
+      }
+    }
     emitUpdate();
   }
 
