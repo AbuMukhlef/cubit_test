@@ -14,58 +14,71 @@ class MenuScreen extends StatelessWidget {
       create: (context) => MenuCubit(),
       child: Builder(builder: (context) {
         final cubit = context.read<MenuCubit>();
-        return Scaffold(
-          appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(70),
-            child: Container(
-              decoration: boxDec(),
-              child: AppBar(
-                backgroundColor: Colors.transparent,
-                elevation: 0,
-                actions: [
-                  CircleAvatar(
-                    radius: 8.w,
-                    child: const Icon(Icons.person),
-                  )
-                ],
+        return BlocListener<MenuCubit, MenuState>(
+          listener: (context, state) {
+            if (state is UpdateUIState) {
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  content: Text('Sorry, no item found for ${state.search}'),
+                ),
+              );
+            }
+          },
+          child: Scaffold(
+            appBar: PreferredSize(
+              preferredSize: const Size.fromHeight(70),
+              child: Container(
+                decoration: boxDec(),
+                child: AppBar(
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                  actions: [
+                    CircleAvatar(
+                      radius: 8.w,
+                      child: const Icon(Icons.person),
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-          drawer: const Drawer(),
-          body: Container(
-            decoration: boxDec(),
-            child: Center(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: BlocProvider(
-                      create: (context) => MenuCubit(),
-                      child: TextField(
-                        controller: cubit.searchController,
-                        decoration: const InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
-                          contentPadding: EdgeInsets.all(8),
-                          border: OutlineInputBorder(),
-                          hintText: 'Search',
-                          prefixIcon: Icon(Icons.search),
+            drawer: const Drawer(),
+            body: Container(
+              decoration: boxDec(),
+              child: Center(
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: BlocProvider(
+                        create: (context) => MenuCubit(),
+                        child: TextField(
+                          controller: cubit.searchController,
+                          decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            contentPadding: EdgeInsets.all(8),
+                            border: OutlineInputBorder(),
+                            hintText: 'Search',
+                            prefixIcon: Icon(Icons.search),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  BlocProvider(
-                    create: (context) => MenuCubit(),
-                    child: ElevatedButton(
-                        onPressed: () {
-                          cubit.searchText(controller: cubit.searchController);
-                        },
-                        child: Text(
-                          'Search',
-                          style: TextStyle(color: context.primary),
-                        )),
-                  ),
-                ],
+                    BlocProvider(
+                      create: (context) => MenuCubit(),
+                      child: ElevatedButton(
+                          onPressed: () {
+                            cubit.searchText(
+                                controller: cubit.searchController);
+                          },
+                          child: Text(
+                            'Search',
+                            style: TextStyle(color: context.primary),
+                          )),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
