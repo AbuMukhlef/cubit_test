@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:cubit_test/screen/home_screen.dart';
+import 'package:cubit_test/screen/start/home_screen.dart';
 import 'package:sizer/sizer.dart';
 // import 'package:flutter_dotenv/flutter_dotenv.dart';
 // import 'core/supabase/set_initialize.dart';
