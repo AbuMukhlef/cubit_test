@@ -29,4 +29,4 @@ flutter:
   fonts:
     - family: myFont
       fonts:
-        - asset: assets/fonts/SixtyfourConvergence-Regular-VariableFont_BLED,SCAN,XELA,YELA.ttf
+        - asset: assets/fonts/SixtyfourConvergence-Regular.ttf

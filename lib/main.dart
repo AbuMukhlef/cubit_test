@@ -31,6 +31,7 @@ class MainApp extends StatelessWidget {
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
+          theme: ThemeData(fontFamily: 'myFont'),
           home: const HomeScreen(),
         );
       },

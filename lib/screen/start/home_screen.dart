@@ -12,32 +12,34 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => NavCubit(),
-      child: Builder(
-        builder: (context) {
-          final cubit = context.read<NavCubit>();
-          return Scaffold(
-            body: Container(
-              decoration: boxDec(),
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset('assets/images/cup.png'),
-                    SizedBox(height: 25.w),
-                    Text('Bringing comfort with a cup of coffee',
-                        style: TextStyle(fontSize: 5.w)),
-                    SizedBox(height: 25.w),
-                    ElevatedButton(
-                        onPressed: () {
-                          cubit.goCubitTo(context: context, screenView: const MenuScreen());
-                        }, child: const Text('Get started')),
-                  ],
-                ),
+      child: Builder(builder: (context) {
+        final cubit = context.read<NavCubit>();
+        return Scaffold(
+          body: Container(
+            decoration: boxDec(),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset('assets/images/cup.png'),
+                  SizedBox(height: 25.w),
+                  Text(
+                      textAlign: TextAlign.center,
+                      'Bringing comfort with a cup of coffee',
+                      style: TextStyle(fontSize: 4.w)),
+                  SizedBox(height: 25.w),
+                  ElevatedButton(
+                      onPressed: () {
+                        cubit.goCubitTo(
+                            context: context, screenView: const MenuScreen());
+                      },
+                      child: const Text('Get started')),
+                ],
               ),
             ),
-          );
-        }
-      ),
+          ),
+        );
+      }),
     );
   }
 }
