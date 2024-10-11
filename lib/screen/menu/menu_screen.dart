@@ -20,7 +20,7 @@ class MenuScreen extends StatelessWidget {
               showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
-                  content: Text('Sorry, no item found for ${state.search}'),
+                  content: Text('Sorry, no item found for ${cubit.searchController.text}'),
                 ),
               );
             }
