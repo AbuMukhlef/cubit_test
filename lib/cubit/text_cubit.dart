@@ -32,7 +32,6 @@ class TextCubit extends Cubit<TextState> {
   Future<void> fetchData() async {
     emitLoading();
     if (tableMap.isNotEmpty) {
-      print('fghjkl');
     } else {
       var res =
           await SupabaseInitialize.supabase.from('messages').select().limit(2);
