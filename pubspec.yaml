@@ -25,6 +25,7 @@ flutter:
   assets:
     - .env
     - assets/locales/
+    - assets/images/
   fonts:
     - family: myFont
       fonts:

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -7,7 +8,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
@@ -21,9 +22,13 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.add_ic_call),
-              Text('Bringing comfort with a cup of coffee'),
-              ElevatedButton(onPressed: () {}, child: Text('Get started')),
+               Image.asset('assets/images/cup.png'),
+              SizedBox(height: 25.w),
+              Text('Bringing comfort with a cup of coffee',
+                  style: TextStyle(fontSize: 5.w)),
+              SizedBox(height: 25.w),
+              ElevatedButton(
+                  onPressed: () {}, child: const Text('Get started')),
             ],
           ),
         ),

@@ -12,10 +12,10 @@ Future<void> main() async {
   // await SupabaseInitialize.initialize();
   runApp(
     EasyLocalization(
-        supportedLocales: [Locale('en'), Locale('ar')],
+        supportedLocales: const [Locale('en'), Locale('ar')],
         path: 'assets/locales',
-        fallbackLocale: Locale('en', 'US'),
-        child: MainApp()),
+        fallbackLocale: const Locale('en', 'US'),
+        child: const MainApp()),
   );
 }
 
@@ -31,7 +31,7 @@ class MainApp extends StatelessWidget {
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
-          home: HomeScreen(),
+          home: const HomeScreen(),
         );
       },
     );
