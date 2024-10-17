@@ -20,7 +20,8 @@ class MenuScreen extends StatelessWidget {
               showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
-                  content: Text('Sorry, no item found for ${cubit.searchController.text}'),
+                  content: Text(
+                      'Sorry, no item found for ${cubit.searchController.text}'),
                 ),
               );
             }
@@ -69,8 +70,9 @@ class MenuScreen extends StatelessWidget {
                       create: (context) => MenuCubit(),
                       child: ElevatedButton(
                           onPressed: () {
-                            cubit.searchText(
-                                controller: cubit.searchController);
+                            cubit.getData();
+                            // cubit.searchText(
+                            //     controller: cubit.searchController);
                           },
                           child: Text(
                             'Search',
