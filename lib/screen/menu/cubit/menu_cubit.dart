@@ -10,7 +10,6 @@ class MenuCubit extends Cubit<MenuState> {
   searchText({required TextEditingController controller}) {
     emitLoading();
     searchController = controller;
-    print(searchController.text);
     emitUpdate();
   }
 
