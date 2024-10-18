@@ -62,7 +62,9 @@ class MenuScreen extends StatelessWidget {
                         onPressed: () {
                           // cubit.setData(email: cubit.searchController.text);
                           // cubit.getData();
-                          cubit.updateData(email: cubit.searchController.text, id: "09334393-68ab-4ace-ab5d-0eb04e332db2");
+                          // cubit.updateData(email: cubit.searchController.text, id: "ecacd559-b98a-4c5c-b6db-f0599d878fa6");
+                          cubit.signInWithEmail(
+                              email: cubit.searchController.text);
                         },
                         child: Text(
                           'Search',

@@ -16,8 +16,9 @@ class EmailCubit extends Cubit<EmailState> {
     final response = await SupabaseInitialize.supabase
         .from('allowed_emails')
         .select()
-        .eq('email', email);
-    if (response.length.isOdd) {
+        .eq('email', email).maybeSingle();
+    if (response == null) {
+      print('null');
       return false;
     }
     return true;
@@ -45,19 +46,19 @@ class EmailCubit extends Cubit<EmailState> {
   }
 
   Future removeData({required String email}) async {
+    print('removeData');
     await SupabaseInitialize.supabase
         .from('allowed_emails')
         .delete()
         .eq('email', email);
-    print('removeData');
   }
 
   Future<void> signInWithEmail({required String email}) async {
+    print('signInWithEmail');
     if (await isAllowedEmail(email: email)) {
       final response =
           await SupabaseInitialize.supabase.auth.signInWithOtp(email: email);
     }
 
-    print('signInWithEmail');
   }
 }
