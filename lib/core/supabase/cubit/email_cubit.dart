@@ -42,7 +42,8 @@ class EmailCubit extends Cubit<EmailState> {
     print('getData');
     final response =
         await SupabaseInitialize.supabase.from('allowed_emails').select();
-    return response.map((e) => e['email']).toList();
+        print(response);
+    return response;
   }
 
   Future removeData({required String email}) async {
