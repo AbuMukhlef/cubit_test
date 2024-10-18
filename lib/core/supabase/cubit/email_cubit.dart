@@ -24,10 +24,24 @@ class EmailCubit extends Cubit<EmailState> {
   }
 
   Future setData({required String email}) async {
+    print('setData');
     await SupabaseInitialize.supabase.from('allowed_emails').insert({
       'email': email,
     });
-    print('setData');
+  }
+
+  Future updateData({required String email, required String id}) async {
+    print('updateData');
+    await SupabaseInitialize.supabase
+        .from('allowed_emails')
+        .update({'email': email}).eq('id', id);
+  }
+
+  Future getData() async {
+    print('getData');
+    final response =
+        await SupabaseInitialize.supabase.from('allowed_emails').select();
+    return response.map((e) => e['email']).toList();
   }
 
   Future removeData({required String email}) async {
@@ -38,5 +52,12 @@ class EmailCubit extends Cubit<EmailState> {
     print('removeData');
   }
 
+  Future<void> signInWithEmail({required String email}) async {
+    if (await isAllowedEmail(email: email)) {
+      final response =
+          await SupabaseInitialize.supabase.auth.signInWithOtp(email: email);
+    }
 
+    print('signInWithEmail');
+  }
 }

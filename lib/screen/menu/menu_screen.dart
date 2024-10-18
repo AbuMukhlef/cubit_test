@@ -60,10 +60,9 @@ class MenuScreen extends StatelessWidget {
                     create: (context) => EmailCubit(),
                     child: ElevatedButton(
                         onPressed: () {
-                          cubit.removeData(email: cubit.searchController.text);
+                          // cubit.setData(email: cubit.searchController.text);
                           // cubit.getData();
-                          // cubit.searchText(
-                          //     controller: cubit.searchController);
+                          cubit.updateData(email: cubit.searchController.text, id: "09334393-68ab-4ace-ab5d-0eb04e332db2");
                         },
                         child: Text(
                           'Search',
