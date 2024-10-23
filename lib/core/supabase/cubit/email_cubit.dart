@@ -12,8 +12,9 @@ class EmailCubit extends Cubit<EmailState> {
 
   TextEditingController searchController = TextEditingController();
 
-  readFile(){
-    importExcel();
+  late dynamic allowedEmail = importExcel();
+  readFile() {
+    print(allowedEmail);
   }
 
   Future<bool> isAllowedEmail({required String email}) async {
@@ -21,7 +22,8 @@ class EmailCubit extends Cubit<EmailState> {
     final response = await SupabaseInitialize.supabase
         .from('allowed_emails')
         .select()
-        .eq('email', email).maybeSingle();
+        .eq('email', email)
+        .maybeSingle();
     if (response == null) {
       print('null');
       return false;
@@ -47,7 +49,7 @@ class EmailCubit extends Cubit<EmailState> {
     print('getData');
     final response =
         await SupabaseInitialize.supabase.from('allowed_emails').select();
-        print(response);
+    print(response);
     return response;
   }
 
@@ -65,6 +67,5 @@ class EmailCubit extends Cubit<EmailState> {
       final response =
           await SupabaseInitialize.supabase.auth.signInWithOtp(email: email);
     }
-
   }
 }
