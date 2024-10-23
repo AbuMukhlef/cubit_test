@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
+import '../../../file/read.dart';
 import '../set_initialize.dart';
 
 part 'email_state.dart';
@@ -10,6 +11,10 @@ class EmailCubit extends Cubit<EmailState> {
   EmailCubit() : super(EmailInitial());
 
   TextEditingController searchController = TextEditingController();
+
+  readFile(){
+    importExcel();
+  }
 
   Future<bool> isAllowedEmail({required String email}) async {
     print('isAllowedEmail');
