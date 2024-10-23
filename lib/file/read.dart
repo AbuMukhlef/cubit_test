@@ -32,9 +32,9 @@ Future<dynamic> importExcel() async {
                 print('  format: $numFormat');
               case TextCellValue():
                 if (cell?.columnIndex == 0) {
-                  names.add('$value.value');
+                  names.add('$value');
                 } else {
-                  emails.add('$value.value');
+                  emails.add('$value');
                 }
 
               case FormulaCellValue():
@@ -50,7 +50,7 @@ Future<dynamic> importExcel() async {
       }
 
       for (var email in emails) {
-        print(email);
+        print('email: $email');
       }
     }
     return numFormat;

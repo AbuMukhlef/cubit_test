@@ -58,19 +58,36 @@ class MenuScreen extends StatelessWidget {
                   ),
                   BlocProvider(
                     create: (context) => EmailCubit(),
-                    child: ElevatedButton(
-                        onPressed: () {
-                          // cubit.setData(email: cubit.searchController.text);
-                          // cubit.getData();
-                          // cubit.updateData(email: cubit.searchController.text, id: "ecacd559-b98a-4c5c-b6db-f0599d878fa6");
-                          // cubit.signInWithEmail(
-                          //     email: cubit.searchController.text);
-                          cubit.readFile();
-                        },
-                        child: Text(
-                          'Search',
-                          style: TextStyle(color: context.primary),
-                        )),
+                    child: Row(
+                      children: [
+                        ElevatedButton(
+                            onPressed: () {
+                              // cubit.setData(email: cubit.searchController.text);
+                              // cubit.getData();
+                              // cubit.updateData(email: cubit.searchController.text, id: "ecacd559-b98a-4c5c-b6db-f0599d878fa6");
+                              // cubit.signInWithEmail(
+                              //     email: cubit.searchController.text);
+                              cubit.readFile();
+                            },
+                            child: Text(
+                              'Search',
+                              style: TextStyle(color: context.primary),
+                            )),
+                        ElevatedButton(
+                            onPressed: () {
+                              cubit.setData(email: cubit.searchController.text);
+                              // cubit.getData();
+                              // cubit.updateData(email: cubit.searchController.text, id: "ecacd559-b98a-4c5c-b6db-f0599d878fa6");
+                              // cubit.signInWithEmail(
+                              //     email: cubit.searchController.text);
+                              // cubit.readFile();
+                            },
+                            child: Text(
+                              'Send',
+                              style: TextStyle(color: context.primary),
+                            )),
+                      ],
+                    ),
                   ),
                 ],
               ),

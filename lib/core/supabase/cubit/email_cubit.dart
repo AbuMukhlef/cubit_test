@@ -33,6 +33,7 @@ class EmailCubit extends Cubit<EmailState> {
 
   Future setData({required String email}) async {
     print('setData');
+    print(allowedEmail);
     await SupabaseInitialize.supabase.from('allowed_emails').insert({
       'email': email,
     });
