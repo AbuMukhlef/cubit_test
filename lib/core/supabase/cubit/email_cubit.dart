@@ -37,7 +37,8 @@ class EmailCubit extends Cubit<EmailState> {
     var x = await allowedEmail;
 
     await SupabaseInitialize.supabase.from('allowed_emails').insert(
-        {'email': x[0].email,});
+        {'email': x[0].email,
+        'name': x[0].name,});
 
   }
 
