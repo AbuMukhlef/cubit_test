@@ -1,12 +1,15 @@
 import 'dart:io';
+import 'package:cubit_test/model/company.dart';
 import 'package:excel/excel.dart';
 import 'package:file_picker/file_picker.dart';
 
-Future<dynamic> importExcel() async {
+Future<List<Company>> importExcel() async {
   var result = await FilePicker.platform.pickFiles(
     type: FileType.custom,
     allowedExtensions: ['xlsx'],
   );
+
+  List<Company> companies = [];
 
   List<String> names = [];
   List<String> emails = [];
@@ -50,12 +53,12 @@ Future<dynamic> importExcel() async {
       }
 
       for (var email in emails) {
-        print('email: $email');
+        companies.add(Company.fromJson(
+            {'name': names[emails.indexOf(email)], 'email': email}));
       }
     }
-    return numFormat;
+    return companies;
   } else {
-    print('No file selected');
-    return null;
+    return [];
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
 import '../../../file/read.dart';
+import '../../../model/company.dart';
 import '../set_initialize.dart';
 
 part 'email_state.dart';
@@ -12,7 +13,7 @@ class EmailCubit extends Cubit<EmailState> {
 
   TextEditingController searchController = TextEditingController();
 
-  late dynamic allowedEmail = importExcel();
+  Future<List<Company>> allowedEmail = importExcel();
   readFile() {
     print(allowedEmail);
   }
@@ -32,11 +33,12 @@ class EmailCubit extends Cubit<EmailState> {
   }
 
   Future setData({required String email}) async {
-    print('setData');
-    print(allowedEmail);
-    await SupabaseInitialize.supabase.from('allowed_emails').insert({
-      'email': email,
-    });
+
+    var x = await allowedEmail;
+
+    await SupabaseInitialize.supabase.from('allowed_emails').insert(
+        {'email': x[0].email,});
+
   }
 
   Future updateData({required String email, required String id}) async {
